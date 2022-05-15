@@ -1,0 +1,118 @@
+:root {
+    --grid: 1;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: space-between;
+    background-color: #FFF;
+}
+
+header {
+    height: 150px;
+    background-color: rgb(63 172 181 / 83%);
+    color:white;
+    border-bottom: 4px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;;
+    align-items: center;
+    font-size: 24px;
+    /* font-family:  'Rouge Script', cursive; TRY TO FIND NICE FONT THAT WORKS */
+}
+
+header h1, header h2 {
+    margin: 10px;
+    padding: 0px;
+}
+
+footer {
+    height: 50px;
+    background-color: rgb(63 172 181 / 83%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-top: 4px solid black;
+    font-size: 28px;
+}
+
+.mainPage, .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.leftside, .rightside {
+    display: flex;
+    flex: 0.5;
+    flex-direction: column;
+    height: 600px;
+    margin: 0 100px 0 100px;
+    justify-content: space-evenly;
+    /* border: 2px solid black; */
+}
+
+.leftside {
+    align-items:flex-end;
+    border-left: 2px solid rgb(63 172 181 / 83%);
+}
+
+.rightside {
+    border-right: 2px solid rgb(63 172 181 / 83%);
+    justify-content: space-between;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(var(--grid), 1fr);
+    grid-template-rows: repeat(var(--grid), 1fr);
+    height: 700px;
+    width: 700px;
+    border: 2px solid black;
+    flex: 1;
+    /* Add shadow effects. */
+}
+
+.button, .buttonHover {
+    border: 2px solid black;
+    border-radius: 15px;
+    height: 120px;
+    width: 300px;
+    margin: 0 60px 0 60px;
+    font-size: 25px;
+    /* add shadow effects. */
+}
+
+.buttonHover {
+    transform: scale(1.1);
+    background-color:rgb(63 172 181 / 83%)
+}
+
+.leftside > div, .rightside > div {
+    display: flex;
+    flex-direction: column;
+}
+
+section > div > input {
+    margin: 10px;
+    border-radius: 5px;
+    width: 150px;
+    height: 20px;
+    
+}
+
+.grid {
+    border: 1px solid black;
+}
+
+.originalColor {
+    background-color: rgba(63, 172, 181, 0.831);
+}
+
+#colorPickerInput {
+    height: 70px;
+    width: 170px;
+}

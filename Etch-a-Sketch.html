@@ -1,0 +1,67 @@
+<!DOCTYPE = HTML>
+<html lang = "en">
+    
+    <head>
+        <meta charset = "UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=, initial-scale=1.0">
+
+        <title> Etch-a-Sketch</title>
+        <script src = "./Etch-a-Sketch.js" defer></script>
+        <link rel = "stylesheet" href = "./styles.css">
+
+    </head>
+
+    <body>
+
+        <header>
+            <h1> Etch-a-Sketch</h1>
+            <h2> Let your artistic skills flow!</h2>
+        </header>
+
+        <!-- Sections. -->
+        <section class = "mainPage">
+            
+            <section class = "leftside">
+                
+                <div class = "button"> 
+                    Grid Size 
+                    <input type = "range" id = userInput min="1" max="100" value="16">
+                    <strong id = gridSizeText> 16 x 16 </strong>
+                </div>
+
+                <div class = "button" id="eraser"> Eraser </div>
+
+                <div class = "button" id="reset"> Reset Grid </div>
+            
+            </section>
+
+            <section class = "middle">
+                
+                <div class = "container">
+                    <div></div>
+                </div> 
+
+            </section>
+
+            <section class = "rightside">
+                <div class = "button" id = "colorPicker">
+                    <input type = "color" id = "colorPickerInput" oninput="colorPicker()" value = "#3facb5">
+                    <label> Pick a Color! </label>
+                </div>
+
+                <div class = "button" id = "drawBlackColor"> Black </div>
+                <div class = "button" id = "drawRgbColor"> RGB Rainbow </div>
+                <div class = "button" id = "default">Default</div>
+            </section>
+
+        </section>
+
+        <!-- Footer. -->
+        <footer>
+            <p>JayC GitHub</p>
+        </footer>
+
+    </body>
+
+</html>
