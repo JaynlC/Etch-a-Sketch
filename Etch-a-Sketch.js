@@ -2,7 +2,10 @@
 const sketchArea = document.querySelector(".container")
 const gridsize = document.querySelector("#userInput");
 let getValue = parseInt(gridsize.value);
+let randomColor;
 let click = true;
+
+// all functions below
 
 function chooseColorButton() {
     const buttons = document.querySelectorAll(".button");
@@ -16,18 +19,20 @@ function chooseColorButton() {
 }
 
 function implementColor(colorSelected) {
-    if (colorSelected === "drawRgbColor") {
-        console.log("rgb")
+    if (colorSelected === "randomColor") {
+        randomColorSelector();
     } else if (colorSelected === "colorPicker") {
         colorPicker();
     } else if (colorSelected === "eraser") {
-        erase()
+        erase();
     } else if (colorSelected === "default") {
         colorSelected = "#3facb5d4";;
         drawSketch(colorSelected);
     } else if (colorSelected === "drawBlackColor") {
         colorSelected = "rgb(20, 20, 20)"
         drawSketch(colorSelected);
+    } else if (colorSelected ==="drawRainbow") {
+        drawRainbow();
     }
 }
 
@@ -44,8 +49,29 @@ function colorPicker() {
     drawSketch(colorSelected);
 }
 
-function rgb() {
-    // google rainbow effect. First how to randomly select background value, between 0 to 250. Three times. (RGB).
+function randomRgbGenerator() {
+    const randomRGBNumber = Math.round(Math.random()*250);
+    return randomRGBNumber;
+}
+
+function randomColorSelector() {
+    const randomColorButton=document.querySelector("#randomColor");
+    randomColorButton.addEventListener("click", ()=> {
+    // The global variable "random color" is modified by function hoverButtons(), which uses function randomRGBGenerator(). This is so that the hover color and color drawn match. 
+        drawSketch(randomColor);
+    })
+}
+
+function drawRainbow() {
+    const drawRainbow = document.querySelector("#drawRainbow");
+    drawRainbow.addEventListener("click", ()=> {
+        canvasGrid = document.querySelectorAll(".grid");
+        canvasGrid.forEach(box => {
+            box.addEventListener("mouseenter", () => {
+                box.style.backgroundColor = `rgb(${randomRgbGenerator()}, ${randomRgbGenerator()}, ${randomRgbGenerator()})`;
+            })
+        })
+    })
 }
 
 function drawSketch(color) {
@@ -114,7 +140,7 @@ function resetGrid() {
 
 function hoverButtons() {
     const buttons = document.querySelectorAll(".button");
-    // all buttons by default will have background color.
+    // all other buttons by default will have default background color.
     buttons.forEach(button => {
         button.addEventListener("mouseenter", () => {
             button.classList.toggle("buttonHover")
@@ -123,7 +149,7 @@ function hoverButtons() {
             button.classList.toggle("buttonHover")
         })
     })
-    // button for black:
+    // black button color.
     const blackButton = document.querySelector("#drawBlackColor");
     blackButton.addEventListener("mouseenter", () => {
         blackButton.style.backgroundColor = "rgb(20, 20, 20)";
@@ -133,8 +159,20 @@ function hoverButtons() {
         blackButton.style.backgroundColor = "rgb(255, 255, 255)"
         blackButton.style.color = "rgb(0, 0, 0)"
     })
+    // random Color button hover color.
+    const randomColorButton = document.querySelector("#randomColor");
+    randomColorButton.addEventListener("mouseenter", () => {
+        randomColor = `rgb(${randomRgbGenerator()}, ${randomRgbGenerator()}, ${randomRgbGenerator()})`;
+        randomColorButton.style.backgroundColor = randomColor;
+        
+    })
+    randomColorButton.addEventListener("mouseleave", () => {
+        randomColorButton.style.backgroundColor = "rgb(255, 255, 255)"
+        
+    })
 }
 
+//Lessons Learnt:
 // grid.style.setProperty("--n", size); Google it. 
 //  https://stackoverflow.com/questions/62572845/css-grid-cells-dont-fill-all-available-space-when-the-gird-is-64-x-64
 // use of :root in css
@@ -143,5 +181,3 @@ setGrid();
 resetGrid();
 hoverButtons();
 chooseColorButton();
-
-// To do: Rainbow effect. Click on and off. 
