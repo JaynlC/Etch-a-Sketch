@@ -5,7 +5,39 @@ let getValue = parseInt(gridsize.value);
 let randomColor;
 let click = true;
 
-// all functions below
+function setGrid() {
+    gridsize.addEventListener("mouseup", () => {
+        getValue = parseInt(gridsize.value);
+        let gridSizeText = document.querySelector("#gridSizeText");
+        gridSizeText.textContent = ` ${getValue} x ${getValue} `;
+        createGrid(getValue)
+    })
+    createGrid(getValue); // initial value of grid is 16, set in HTML file, in ID gridSizeText.
+}
+
+function createGrid(userInput) {
+    console.log(userInput)
+    // while loop: remove any existing divs from container if gridsize changed. 
+    while (sketchArea.firstChild) {
+        sketchArea.firstChild.remove();
+    }
+    sketchArea.style.setProperty('--grid', userInput);
+    for (let i=1; i<=(userInput*userInput) ; i++) {
+        let grid = document.createElement("div");
+        grid.classList.add("grid");
+        sketchArea.appendChild(grid);
+        
+    } activateSketch();
+}
+
+function activateSketch() {
+    
+    sketchArea.addEventListener("click", () => {
+        click = !click;
+        // if click is true, then false. Vice versa. 
+    })
+    chooseColorButton();
+} 
 
 function chooseColorButton() {
     const buttons = document.querySelectorAll(".button");
@@ -93,40 +125,6 @@ function erase() {
             }) 
         });
 }
-
-function setGrid() {
-    gridsize.addEventListener("mouseup", () => {
-        getValue = parseInt(gridsize.value);
-        let gridSizeText = document.querySelector("#gridSizeText");
-        gridSizeText.textContent = ` ${getValue} x ${getValue} `;
-        createGrid(getValue)
-    })
-    createGrid(getValue); // initial value of grid is 16, set in HTML file, in ID gridSizeText.
-}
-
-function createGrid(userInput) {
-    console.log(userInput)
-    // while loop: remove any existing divs from container if gridsize changed. 
-    while (sketchArea.firstChild) {
-        sketchArea.firstChild.remove();
-    }
-    sketchArea.style.setProperty('--grid', userInput);
-    for (let i=1; i<=(userInput*userInput) ; i++) {
-        let grid = document.createElement("div");
-        grid.classList.add("grid");
-        sketchArea.appendChild(grid);
-        
-    } activateSketch();
-}
-
-function activateSketch() {
-    
-    sketchArea.addEventListener("click", () => {
-        click = !click;
-        // if click is true, then false. Vice versa. 
-    })
-    chooseColorButton();
-} 
 
 function resetGrid() {
     let resetButton = document.querySelector("#reset");
